@@ -1,0 +1,405 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\pages\\categories.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\pages\\categories.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\pages\\editentry.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\pages\\editentry.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\models\\haushaltsbuchcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\models\\haushaltsbuchcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\models\\benutzerkategorie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\models\\benutzerkategorie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\models\\benutzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\models\\benutzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\pages\\users.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\pages\\users.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\pages\\addentry.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\pages\\addentry.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\pages\\edituser.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\pages\\edituser.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\components\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\components\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\migrations\\202409181302022_betraginttodouble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\migrations\\202409181302022_betraginttodouble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\models\\transaktion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\models\\transaktion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|c:\\users\\p07\\source\\repos\\haushaltsbuch\\haushaltsbuch\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{190B920C-B959-45C9-8E55-62B02566C690}|Haushaltsbuch\\Haushaltsbuch.csproj|solutionrelative:haushaltsbuch\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Program.cs",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Program.cs",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Program.cs",
+              "RelativeToolTip": "Haushaltsbuch\\Program.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAADwvxoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-18T06:40:49.738Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\App.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\App.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\App.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-18T10:55:54.985Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "app.css",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\wwwroot\\app.css",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\wwwroot\\app.css",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\wwwroot\\app.css",
+              "RelativeToolTip": "Haushaltsbuch\\wwwroot\\app.css",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAGAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-18T08:12:41.365Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\Login.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\Pages\\Login.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\Login.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\Pages\\Login.razor",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAGYAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-18T06:35:56.103Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Register.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\Register.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\Pages\\Register.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\Register.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\Pages\\Register.razor",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAAADYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-18T09:00:37.585Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAFQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-18T10:53:22.52Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AddEntry.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\AddEntry.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\Pages\\AddEntry.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\AddEntry.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\Pages\\AddEntry.razor",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAEkAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-18T11:43:49.621Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Categories.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\Categories.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\Pages\\Categories.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\Categories.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\Pages\\Categories.razor",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-19T08:06:45.178Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Users.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\Users.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\Pages\\Users.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\Users.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\Pages\\Users.razor",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAGoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-20T07:05:49.729Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EditEntry.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\EditEntry.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\Pages\\EditEntry.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\EditEntry.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\Pages\\EditEntry.razor",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAAADAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-18T13:30:22.887Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "EditUser.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\EditUser.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\Pages\\EditUser.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Pages\\EditUser.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\Pages\\EditUser.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-20T07:24:09.025Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HaushaltsbuchContext.cs",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Models\\HaushaltsbuchContext.cs",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Models\\HaushaltsbuchContext.cs",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Models\\HaushaltsbuchContext.cs",
+              "RelativeToolTip": "Haushaltsbuch\\Models\\HaushaltsbuchContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T09:25:16.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\_Imports.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\_Imports.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\_Imports.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-18T10:52:14.138Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-20T06:29:51.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "Haushaltsbuch\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-18T10:57:31.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BenutzerKategorie.cs",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Models\\BenutzerKategorie.cs",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Models\\BenutzerKategorie.cs",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Models\\BenutzerKategorie.cs",
+              "RelativeToolTip": "Haushaltsbuch\\Models\\BenutzerKategorie.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T08:08:46.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Transaktion.cs",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Models\\Transaktion.cs",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Models\\Transaktion.cs",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Models\\Transaktion.cs",
+              "RelativeToolTip": "Haushaltsbuch\\Models\\Transaktion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-18T11:00:49.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Benutzer.cs",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Models\\Benutzer.cs",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Models\\Benutzer.cs",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Models\\Benutzer.cs",
+              "RelativeToolTip": "Haushaltsbuch\\Models\\Benutzer.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-18T11:02:50.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "202409181302022_BetragIntToDouble.cs",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Migrations\\202409181302022_BetragIntToDouble.cs",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Migrations\\202409181302022_BetragIntToDouble.cs",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Migrations\\202409181302022_BetragIntToDouble.cs",
+              "RelativeToolTip": "Haushaltsbuch\\Migrations\\202409181302022_BetragIntToDouble.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-18T13:02:02.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\appsettings.Development.json",
+              "RelativeToolTip": "Haushaltsbuch\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-18T12:38:34.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Haushaltsbuch\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-18T12:30:51.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\appsettings.json",
+              "RelativeDocumentMoniker": "Haushaltsbuch\\appsettings.json",
+              "ToolTip": "C:\\Users\\P07\\source\\repos\\Haushaltsbuch\\Haushaltsbuch\\appsettings.json",
+              "RelativeToolTip": "Haushaltsbuch\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-18T12:30:40.495Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

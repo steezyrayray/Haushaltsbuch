@@ -1,0 +1,17 @@
+﻿@using Haushaltsbuch.Models
+@inherits LayoutComponentBase
+
+<NavMenu />
+<main class="responsive">
+    @Body
+</main>
+
+@code {
+    private void RedirectToHome() => NavigationManager.NavigateTo("/home");
+
+    private async void LogOut()
+    {
+        await JS.InvokeAsync<string>("deleteUserId");
+        NavigationManager.NavigateTo("/login");
+    }
+}

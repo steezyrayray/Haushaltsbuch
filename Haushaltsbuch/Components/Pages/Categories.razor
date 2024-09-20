@@ -1,0 +1,155 @@
+﻿@page "/categories"
+@using Haushaltsbuch.Models
+@using Haushaltsbuch.Components.Pages
+@rendermode InteractiveServer
+
+<div class="categories">
+    <h1 class="my">Kategorien verwalten</h1>
+    <h3 class="my">Standard-Kategorien (Zum Entfernen klicken)</h3>
+    <div class="filter my">
+        @foreach (Kategorie kategorie in StandardKategorien)
+        {
+            <button class="chip round large filter-item" @onclick="() => DeleteCategory(kategorie.Id)" style="border-color: @kategorie.HexColor; margin: 10px;">
+                <i class="primary-text">@GetIconName(kategorie.Id)</i>
+                <span>@kategorie.Name</span>
+                <i style="color: darkred;">close</i>
+            </button>
+        }
+    </div>
+    <hr class="my" />
+    @if(BenutzerKategorien.Any())
+    {
+        <h3 class="my">Benutzerdefinierte Kategorien (Zum Entfernen klicken)</h3>
+        <div class="filter my">
+            @foreach (Kategorie kategorie in BenutzerKategorien)
+            {
+                <button class="chip round large filter-item" @onclick="() => DeleteCategory(kategorie.Id)" style="border-color: @kategorie.HexColor; margin: 10px;">
+                    <span>@kategorie.Name</span>
+                    <i style="color: darkred;">close</i>
+                </button>
+            }
+        </div>
+        <hr />
+    }
+    <h3 class="my">Kategorie hinzufügen</h3>
+    
+    <div class="add-category my">
+        <div class="field round border medium-width m-0" style="margin: 0;">
+            <input type="text" @bind="NewCategoryName">
+            <span class="helper">Neue Kategorie</span>
+        </div>
+        <button class="round" @onclick="AddCategory">
+            <span>Hinzufügen</span>
+            <i>add</i>
+        </button>
+    </div>
+    
+    
+</div>
+
+@code {
+    public List<Kategorie> StandardKategorien { get; set; } = new();
+    public List<Kategorie> BenutzerKategorien { get; set; } = new();
+    public int UserId { get; set; }
+    public string NewCategoryName { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            UserId = Convert.ToInt32(await JS.InvokeAsync<string>("getUserId"));
+            await LoadDataAsync();
+        }
+    }
+
+    private async Task LoadDataAsync()
+    {
+        using var db = new HaushaltsbuchContext();
+        StandardKategorien = db.Kategorie.Where(k => k.Id <= 10).ToList();
+        var benutzerKategorieIds = db.BenutzerKategorie
+            .Where(bk => bk.BenutzerId == UserId && bk.KategorieId > 11)
+            .Select(bk => bk.KategorieId)
+            .ToList();
+
+        BenutzerKategorien = db.Kategorie
+            .Where(k => benutzerKategorieIds.Contains(k.Id))
+            .ToList();
+
+        StateHasChanged();
+    }
+
+    private async Task AddCategory()
+    {
+        using var db = new HaushaltsbuchContext();
+        var kategorie = new Kategorie
+            {
+                Name = NewCategoryName,
+                HexColor = GetRandomHexColor()
+            };
+        db.Kategorie.Add(kategorie);
+
+        var benutzerKategorie = new BenutzerKategorie
+            {
+                BenutzerId = UserId,
+                KategorieId = kategorie.Id
+            };
+        db.BenutzerKategorie.Add(benutzerKategorie);
+        db.SaveChanges();
+
+        await LoadDataAsync();
+    }
+
+    private async Task DeleteCategory(int id)
+    {
+        using var db = new HaushaltsbuchContext();
+        var benutzerKategorie = db.BenutzerKategorie
+            .FirstOrDefault(bk => bk.KategorieId == id && bk.BenutzerId == UserId);
+
+        if (benutzerKategorie != null)
+        {
+            List<Transaktion> betroffeneTransaktionen = db.Transaktion.Where(t => t.KategorieId == benutzerKategorie.KategorieId).ToList();
+            foreach(Transaktion transaktion in betroffeneTransaktionen)
+            {
+                transaktion.KategorieId = 11;
+            }
+            db.BenutzerKategorie.Remove(benutzerKategorie);
+
+            if (id > 11)
+            {
+                var kategorie = db.Kategorie.Find(id);
+                if (kategorie != null)
+                {
+                    db.Kategorie.Remove(kategorie);
+                }
+            }
+
+            db.SaveChanges();
+            await LoadDataAsync();
+        }
+    }
+
+    public string GetIconName(int id) => id switch
+    {
+        1 => "payments",
+        2 => "cottage",
+        3 => "cleaning_services",
+        4 => "health_and_safety",
+        5 => "fitness_center",
+        6 => "directions_car",
+        7 => "work",
+        8 => "pets",
+        9 => "receipt_long",
+        10 => "paid",
+        11 => "more_horiz",
+        _ => string.Empty
+    };
+
+    public string GetRandomHexColor()
+    {
+        var random = new Random();
+        int r = random.Next(100, 256);
+        int g = random.Next(100, 256);
+        int b = random.Next(100, 256);
+        return $"#{r:X2}{g:X2}{b:X2}";
+    }
+}

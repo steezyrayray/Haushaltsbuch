@@ -1,0 +1,179 @@
+﻿@page "/edit-entry/{id:int}"
+@using Haushaltsbuch.Components.Layout
+@using Haushaltsbuch.Models
+@layout MainLayout
+@rendermode InteractiveServer
+
+<div class="my edit-entry">
+    <h1 class="my">Transaktion bearbeiten</h1>
+
+    <div class="my field border round" style="margin-bottom: 20px;margin-top: 20px;">
+        <input type="text" @bind="Betrag">
+        <span class="helper">Betrag</span>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ValidationError.Betrag))
+    {
+        <p class="my red error-message">@ValidationError.Betrag</p>
+    }
+    
+    <div class="my field border round" style="margin-bottom: 20px;margin-top: 20px;">
+        <input type="text" @bind="Beschreibung">
+        <span class="helper">Beschreibung</span>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ValidationError.Beschreibung))
+    {
+        <p class="my red error-message">@ValidationError.Beschreibung</p>
+    }
+
+    @if (Kategorien != null)
+    {
+        <button class="active" style="margin-bottom: 20px;margin-top: 20px;">
+            <span>@Kategorie</span>
+            <i>arrow_drop_down</i>
+            <menu>
+                @foreach (string kategorie in Kategorien.Select(k => k.Name))
+                {
+                    <a @onclick="() => SelectKategorie(kategorie)">@kategorie</a>
+                }
+            </menu>
+        </button>
+    }
+    else
+    {
+        <p class="my red">Loading categories...</p> <!-- Loading state -->
+    }
+
+    <button class="my primary large-elevate extra" @onclick="SaveChanges">
+        <span>Änderungen speichern</span>
+    </button>
+
+    @if (!string.IsNullOrEmpty(GeneralError))
+    {
+        <p class="red my error-message">@GeneralError</p>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private string Betrag;
+    private string Beschreibung;
+    private string Kategorie;
+    private Transaktion Transaktion;
+    private List<Kategorie> Kategorien = new();
+    private int UserId;
+
+    // Error handling
+    private ValidationErrors ValidationError = new ValidationErrors();
+    private string GeneralError;
+
+    private class ValidationErrors
+    {
+        public string Betrag { get; set; }
+        public string Beschreibung { get; set; }
+        public string Kategorie { get; set; }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstrender)
+    {
+        if (firstrender)
+        {
+            try
+            {
+                UserId = Convert.ToInt32(await JS.InvokeAsync<string>("getUserId"));
+
+                using (var db = new HaushaltsbuchContext())
+                {
+                    var benutzerKategorieIds = db.BenutzerKategorie
+                        .Where(bk => bk.BenutzerId == UserId && bk.KategorieId > 11)
+                        .Select(bk => bk.KategorieId)
+                        .ToList();
+                    List<Kategorie> benutzerKategorien = db.Kategorie
+                        .Where(k => benutzerKategorieIds.Contains(k.Id))
+                        .ToList();
+                    Kategorien = db.Kategorie.Where(k => k.Id <= 11).ToList();
+                    Kategorien.AddRange(benutzerKategorien);
+
+                    Transaktion = db.Transaktion.Find(Id);
+                    if (Transaktion != null)
+                    {
+                        Betrag = Transaktion.Betrag.ToString();
+                        Beschreibung = Transaktion.Beschreibung;
+                        Kategorie = Kategorien.Where(k => k.Id == Transaktion.KategorieId)
+                            .FirstOrDefault()?.Name ?? "unkategorisiert";
+                    }
+                }
+                StateHasChanged();
+            }
+            catch (Exception ex)
+            {
+                GeneralError = $"Fehler beim Laden der Transaktion: {ex.Message}";
+            }
+        }
+    }
+
+    private void SelectKategorie(string kategorie) => Kategorie = kategorie; // Set the selected category
+
+    private void SaveChanges()
+    {
+        ClearErrors(); // Reset error messages
+
+        if (!ValidateForm())
+        {
+            return; // Stop execution if validation fails
+        }
+
+        try
+        {
+            using (var db = new HaushaltsbuchContext())
+            {
+                var transaktion = db.Transaktion.Find(Id);
+                if (transaktion != null)
+                {
+                    var betragValue = Convert.ToDouble(Betrag.Replace(',', '.'));
+
+                    transaktion.Betrag = betragValue;
+                    transaktion.Beschreibung = Beschreibung;
+                    transaktion.KategorieId = Kategorien
+                        .Where(k => k.Name == Kategorie)
+                        .FirstOrDefault()?.Id ?? 11; // Fallback to "unkategorisiert"
+                    db.SaveChanges();
+                }
+            }
+            NavigationManager.NavigateTo("/home");
+        }
+        catch (Exception ex)
+        {
+            GeneralError = $"Fehler beim Speichern der Änderungen: {ex.Message}";
+        }
+    }
+
+    private bool ValidateForm()
+    {
+        bool isValid = true;
+
+        if (string.IsNullOrWhiteSpace(Beschreibung))
+        {
+            ValidationError.Beschreibung = "Beschreibung darf nicht leer sein.";
+            isValid = false;
+        }
+
+        if (string.IsNullOrWhiteSpace(Betrag) || !double.TryParse(Betrag.Replace(',', '.'), out _))
+        {
+            ValidationError.Betrag = "Betrag ist ungültig oder leer.";
+            isValid = false;
+        }
+
+    
+
+        return isValid;
+    }
+
+    private void ClearErrors()
+    {
+        ValidationError = new ValidationErrors(); // Reset error messages
+        GeneralError = string.Empty;
+    }
+}

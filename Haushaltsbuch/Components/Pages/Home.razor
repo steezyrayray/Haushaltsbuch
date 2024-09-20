@@ -1,0 +1,192 @@
+﻿@page "/home"
+@using Haushaltsbuch.Models
+@rendermode InteractiveServer
+
+<div class="home">
+        <article class="dashboard small-blur">
+            <div>
+                <h5>Aktuelles Budget</h5>
+                <h1 style="color:@(Budget > 0 ? "forestgreen" : "red")">@Budget €</h1>
+            </div>
+
+
+            <canvas id="expenseChart" width="200" height="200"></canvas>
+            <canvas id="incomeChart" width="200" height="200"></canvas>
+        </article>
+    
+
+    <div class="overview-header">
+        <h2>Ihre Transaktionen:</h2>
+        <button class="primary large-elevate medium" @onclick="RedirectToAdd">
+            <span>Eintrag hinzufügen</span>
+            <i>add</i>
+        </button>
+    </div>
+
+    <div class="filter">
+        <h6>Filter:</h6>
+        @if (Kategorien.Any())
+        {
+            @foreach (Kategorie kategorie in Kategorien)
+            {
+                <button class="my chip @(kategorie.Id == FilterId ? "fill" : "") round medium filter-item"
+                        @onclick="() => ToggleFilter(kategorie.Id)" 
+                        style="border-color: @kategorie.HexColor;margin: 10px;">
+                    <i class="primary-text">@GetIconName(kategorie.Id)</i>
+                    <span>@kategorie.Name</span>
+                </button>
+            }
+        }
+    </div>
+
+    <table class="medium-space">
+        <thead>
+            <tr>
+                <th>Betrag</th>
+                <th>Beschreibung</th>
+                <th>Kategorie</th>
+                <th>Zeit</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Transaktion transaktion in TransaktionenMitFilter)
+            {
+                <tr>
+                    <td style="color:@(transaktion.Betrag > 0 ? "forestgreen" : "red")">@transaktion.Betrag</td>
+                    <td>@transaktion.Beschreibung</td>
+                    <td>@transaktion.Kategorie.Name</td>
+                    <td>@transaktion.Zeit</td>
+                    <td>
+                        <i @onclick="() => RedirectToEdit(transaktion.Id)" style="cursor:pointer;">edit</i>
+                        <i @onclick="() => DeleteEntry(transaktion.Id)" style="cursor:pointer;">delete</i>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    private List<Kategorie> Kategorien = new();
+    private int FilterId = -1;
+    private List<Transaktion> Transaktionen = new();
+    private List<Transaktion> TransaktionenMitFilter = new();
+    private List<Transaktion> Ausgaben = new();
+    private List<Transaktion> Einnahmen = new();
+    private double Budget;
+    private int UserId;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            UserId = Convert.ToInt32(await JS.InvokeAsync<string>("getUserId"));
+            await LoadData();
+        }
+    }
+
+    private void RedirectToAdd() => NavigationManager.NavigateTo("/add-entry");
+
+    private void RedirectToEdit(int id) => NavigationManager.NavigateTo($"/edit-entry/{id}");
+
+    private void RedirectToUsers() => NavigationManager.NavigateTo("/users");
+
+    private async Task DeleteEntry(int id)
+    {
+        using (var db = new HaushaltsbuchContext())
+        {
+            var transaktion = db.Transaktion.Find(id);
+            if (transaktion != null)
+            {
+                db.Transaktion.Remove(transaktion);
+                await db.SaveChangesAsync();
+            }
+        }
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        using (var db = new HaushaltsbuchContext())
+        {
+            Transaktionen = db.Transaktion.Where(t => t.BenutzerId == UserId)
+                                            .OrderByDescending(t => t.Zeit).ToList();
+            Budget = Transaktionen.Select(t => t.Betrag).Sum();
+            Kategorien = db.Kategorie.ToList();
+
+            TransaktionenMitFilter = (FilterId != -1)
+                                      ? Transaktionen.Where(t => t.KategorieId == FilterId).ToList()
+                                      : Transaktionen;
+
+            Ausgaben = Transaktionen.Where(t => t.Betrag < 0).ToList();
+            Einnahmen = Transaktionen.Where(t => t.Betrag > 0).ToList();
+
+            // Prepare chart data for expenses
+            var categoryExpenseData = Ausgaben
+                .GroupBy(t => t.KategorieId)
+                .Select(group => new
+                {
+                    KategorieId = group.Key,
+                    Betrag = group.Sum(t => t.Betrag)
+                })
+                .ToList();
+
+            var categoryExpenseLabels = categoryExpenseData
+                .Select(c => Kategorien.FirstOrDefault(k => k.Id == c.KategorieId)?.Name)
+                .ToList();
+
+            var expenseData = categoryExpenseData
+                .Select(c => Math.Abs(c.Betrag))
+                .ToList();
+
+            // Prepare chart data for incomes
+            var categoryIncomeData = Einnahmen
+                .GroupBy(t => t.KategorieId)
+                .Select(group => new
+                {
+                    KategorieId = group.Key,
+                    Betrag = group.Sum(t => t.Betrag)
+                })
+                .ToList();
+
+            var categoryIncomeLabels = categoryIncomeData
+                .Select(c => Kategorien.FirstOrDefault(k => k.Id == c.KategorieId)?.Name)
+                .ToList();
+
+            var incomeData = categoryIncomeData
+                .Select(c => Math.Abs(c.Betrag))
+                .ToList();
+
+            // Call the JavaScript function to render the expense chart
+            await JS.InvokeVoidAsync("renderExpenseChart", categoryExpenseLabels, expenseData);
+
+            // Call the JavaScript function to render the income chart
+            await JS.InvokeVoidAsync("renderIncomeChart", categoryIncomeLabels, incomeData);
+
+            StateHasChanged();
+        }
+    }
+
+    public string GetIconName(int id) => id switch
+    {
+        1 => "payments",
+        2 => "cottage",
+        3 => "cleaning_services",
+        4 => "health_and_safety",
+        5 => "fitness_center",
+        6 => "directions_car",
+        7 => "work",
+        8 => "pets",
+        9 => "receipt_long",
+        10 => "paid",
+        11 => "more_horiz",
+        _ => ""
+    };
+
+    private async Task ToggleFilter(int id)
+    {
+        FilterId = FilterId == id ? -1 : id;
+        await LoadData();
+    }
+}

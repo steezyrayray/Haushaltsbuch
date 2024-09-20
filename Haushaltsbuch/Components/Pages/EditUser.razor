@@ -1,0 +1,77 @@
+﻿@page "/edit-user/{id:int}"
+@using Haushaltsbuch.Components.Layout
+@using Haushaltsbuch.Models
+@layout MainLayout
+@rendermode InteractiveServer
+
+<div class="edit-user">
+    <h1 class="my">Benutzer bearbeiten</h1>
+
+    <div class="my field border round" style="margin-bottom: 20px;margin-top: 20px;">
+        <input type="text" @bind="Benutzername">
+        <span class="helper">Benutzername</span>
+    </div>
+
+    <label class="my checkbox">
+        <input type="checkbox" @bind="IstAdmin">
+        <span>Administrator</span>
+    </label>
+
+    <button class="my primary large-elevate extra" @onclick="SaveChanges">
+        <span>Änderungen speichern</span>
+    </button>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private string Benutzername;
+    private bool IstAdmin;
+    private Benutzer Benutzer;
+    public int UserId;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Ensure the JavaScript interop call happens after prerendering
+            UserId = Convert.ToInt32(await JS.InvokeAsync<string>("getUserId"));
+
+            using (var db = new HaushaltsbuchContext())
+            {
+                // Admin-Check
+                var currentUser = db.Benutzer.Find(UserId);
+                if (currentUser == null || !currentUser.IstAdmin)
+                {
+                    NavigationManager.NavigateTo("/home");
+                    return;
+                }
+
+                // Load the user data
+                Benutzer = db.Benutzer.Find(Id);
+                if (Benutzer != null)
+                {
+                    Benutzername = Benutzer.Benutzername;
+                    IstAdmin = Benutzer.IstAdmin;
+                }
+
+                StateHasChanged(); // Force re-render after data is loaded
+            }
+        }
+    }
+
+    private void SaveChanges()
+    {
+        using (var db = new HaushaltsbuchContext())
+        {
+            var benutzer = db.Benutzer.Find(Id);
+            if (benutzer != null)
+            {
+                benutzer.Benutzername = Benutzername;
+                benutzer.IstAdmin = IstAdmin;
+                db.SaveChanges();
+            }
+        }
+        NavigationManager.NavigateTo("/users");
+    }
+}

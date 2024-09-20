@@ -1,0 +1,97 @@
+﻿@page "/register"
+@using Haushaltsbuch.Components.Layout
+@using Haushaltsbuch.Models
+@using Microsoft.AspNetCore.Mvc
+@using System.Security.Cryptography
+@using System.Text
+@layout LoginLayout
+@rendermode InteractiveServer
+
+<PageTitle>Registrieren</PageTitle>
+
+<div class="login">
+    <div class="title-div">
+        <h1 class="title-text">Haushaltsbuch</h1>
+        <i class="title-logo">auto_stories</i>
+    </div>
+
+    <h4>Registrieren</h4>
+
+    <div class="field border round medium-width">
+        <input type="text" @bind="Benutzername" />
+        <span class="helper">Benutzername</span>
+    </div>
+
+    <div class="field border round medium-width">
+        <input type="password" @bind="Passwort" />
+        <span class="helper">Passwort</span>
+    </div>
+
+    <div class="login-button-div">
+        <a class="button secondary large-elevate medium" @onclick="RedirectToLogin">
+            <span>Einloggen</span>
+            <i>login</i>
+        </a>
+        <button class="primary large-elevate large" @onclick="TryRegister">
+            <span>Registrieren</span>
+            <i>edit_square</i>
+        </button>
+    </div>
+</div>
+
+@code {
+    private string Benutzername { get; set; }
+    private string Passwort { get; set; }
+
+    private void TryRegister()
+    {
+        if (!string.IsNullOrEmpty(Benutzername) && !string.IsNullOrEmpty(Passwort))
+        {
+            using (var db = new HaushaltsbuchContext())
+            {
+                Benutzer benutzer = new Benutzer
+                    {
+                        Benutzername = Benutzername,
+                        Passwort = HashPassword(Passwort)
+                    };
+
+                db.Benutzer.Add(benutzer);
+                BenutzerKategorie benutzerKategorie;
+                for(int i = 1; i <= 11; i++)
+                {
+                    benutzerKategorie = new BenutzerKategorie
+                        {
+                            BenutzerId = benutzer.Id,
+                            KategorieId = i
+                        };
+                    db.BenutzerKategorie.Add(benutzerKategorie);
+                }
+                db.SaveChanges();
+            }
+            // You can redirect to login after successful registration
+            RedirectToLogin();
+        }
+        else
+        {
+            // Handle error if needed
+            // You could display a message indicating that the fields should not be empty
+        }
+    }
+
+    private void RedirectToLogin() => NavigationManager.NavigateTo("/login");
+    
+
+    private string HashPassword(string password)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+            return builder.ToString();
+        }
+    }
+}

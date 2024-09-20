@@ -1,0 +1,40 @@
+﻿@using Haushaltsbuch.Models
+@rendermode @(new InteractiveServerRenderMode(prerender:false))
+
+<nav class="left drawer">
+    <a href="/home">
+        <i>home</i>
+        <div>Home</div>
+    </a>
+    <a href="/categories">
+        <i>category</i>
+        <div>Kategorien verwalten</div>
+    </a>
+    @if(IsAdmin)
+    {
+        <a href="/users">
+            <i>group</i>
+            <div>Benutzerverwaltung</div>
+        </a>
+    }
+   
+    <a href="/logout">
+        <i>logout</i>
+        <div>Ausloggen</div>
+    </a>
+</nav>
+
+@code {
+    private int UserId;
+    private bool IsAdmin;
+
+    protected override async Task OnInitializedAsync()
+    {
+        UserId = Convert.ToInt32(await JS.InvokeAsync<string>("getUserId"));
+        using (var db = new HaushaltsbuchContext())
+        {
+            IsAdmin = db.Benutzer.Find(UserId).IstAdmin;
+            StateHasChanged();
+        }
+    }
+}

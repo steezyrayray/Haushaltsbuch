@@ -1,0 +1,116 @@
+﻿@page "/login"
+@page "/logout"
+@page "/"
+@using Haushaltsbuch.Components.Layout
+@using Haushaltsbuch.Models
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Http.Extensions;
+@using System.Security.Cryptography
+@using System.Text
+@layout LoginLayout
+@rendermode InteractiveServer
+
+<PageTitle>Login</PageTitle>
+<div class="login">
+    <div class="title-div">
+        <h1 class="title-text">Haushaltsbuch</h1>
+        <i class="title-logo">auto_stories</i>
+    </div>
+    <h4>Einloggen</h4>
+    <div class="field border round medium-width">
+        <input type="text" @bind="Benutzername">
+        <span class="helper">Benutzername</span>
+    </div>
+
+    <div class="field border round medium-width">
+        <input type="password" @bind="Passwort">
+        <span class="helper">Passwort</span>
+    </div>
+    @if (!Valid)
+    {
+        <p class="no-user-found-text">Kein Benutzer mit diesen Daten gefunden!</p>
+    }
+    <div class="login-button-div">
+        <a class="button secondary large-elevate medium" @onclick="RedirectToRegister">
+            <span>Registrieren</span>
+            <i>edit_square</i>
+        </a>
+        <button class="primary large-elevate large" @onclick="TryLogin">
+            <span>Einloggen</span>
+            <i>login</i>
+        </button>
+    </div>
+</div>
+
+
+
+
+@code {
+    private string Benutzername { get; set; }
+    private string Passwort { get; set; }
+    private bool Valid { get; set; } = true;
+
+    private void TryLogin()
+    {
+        using (var db = new HaushaltsbuchContext())
+        {
+            Benutzer gefundenerBenutzer = db.Benutzer.ToList()
+                .Find(x => x.Benutzername == Benutzername && x.Passwort == HashPassword(Passwort));
+
+            if (gefundenerBenutzer == null)
+            {
+                Valid = false;
+            }
+            else
+            {
+                // Call JavaScript to store user ID in localStorage
+                var userId = gefundenerBenutzer.Id.ToString();
+                JS.InvokeVoidAsync("cacheUserId", userId);
+
+                // Redirect to dashboard or another page
+                NavigationManager.NavigateTo("/home");
+            }
+        }
+    }
+
+    private void RedirectToRegister()
+    {
+        NavigationManager.NavigateTo("/register");
+    }
+
+    private string UserId;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (NavigationManager.Uri.Contains("logout", StringComparison.OrdinalIgnoreCase))
+            {
+                await JS.InvokeAsync<string>("deleteUserId");
+            }
+            UserId = await JS.InvokeAsync<string>("getUserId");
+            if (UserId != null) NavigationManager.NavigateTo("/home");
+
+            
+            using (var db = new HaushaltsbuchContext())
+            {
+                // Trigger a re-render to reflect updated data
+                StateHasChanged();
+            }
+        }
+    }
+
+    private string HashPassword(string password)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+            return builder.ToString();
+        }
+    }
+}

@@ -1,0 +1,205 @@
+﻿@page "/add-entry"
+@using Haushaltsbuch.Components.Layout
+@using Haushaltsbuch.Models
+@layout MainLayout
+@rendermode InteractiveServer
+
+<div class="create-entry">
+
+    <h1 class="my">Eintrag hinzufügen</h1>
+
+    <nav class="my transaction-tabs no-space">
+        <button class="border left-round @(CurrentTab == "Ausgabe" ? "fill" : "")" @onclick='() => SetCurrentTab("Ausgabe")'>
+            <span>Ausgabe</span>
+            <i>remove</i>
+        </button>
+        <button class="border right-round @(CurrentTab == "Einnahme" ? "fill" : "")" @onclick='() => SetCurrentTab("Einnahme")'>
+            <span>Einnahme</span>
+            <i>add</i>
+        </button>
+    </nav>
+
+    <div class="my field border round" style="margin-bottom: 20px;margin-top: 20px;">
+        <input type="text" @bind="Beschreibung">
+        <span class="helper">Beschreibung</span>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ValidationError.Beschreibung))
+    {
+        <p class="my red error-message">@ValidationError.Beschreibung</p>
+    }
+
+    <div class="field border round" style="margin-bottom: 20px;margin-top: 20px;">
+        <input type="text" @bind="Betrag">
+        <span class="helper">Betrag</span>
+        
+    </div>
+
+    @if (!string.IsNullOrEmpty(ValidationError.Betrag))
+    {
+        <p class="my red error-message">@ValidationError.Betrag</p>
+    }
+
+    @if (Kategorien != null)
+    {
+        <button class="active" style="margin-bottom: 20px;margin-top: 20px;">
+            <span>@(string.IsNullOrEmpty(Kategorie) ? "unkategorisiert" : Kategorie)</span>
+            <i>arrow_drop_down</i>
+            <menu>
+                @foreach (string kategorie in Kategorien.Select(k => k.Name))
+                {
+                    <a @onclick="() => SelectKategorie(kategorie)">@kategorie</a>
+                }
+            </menu>
+        </button>
+        
+    }
+    else
+    {
+        <p class="my">Loading categories...</p> <!-- Loading state -->
+    }
+
+    <label class="my checkbox" style="margin-bottom: 20px;margin-top: 20px;">
+        <input type="checkbox" @bind="Nochmal">
+        <span>Weiteren Eintrag erstellen</span>
+    </label>
+
+    <button class="primary large-elevate extra" @onclick="TryAddEntry">
+        <span>Eintrag hinzufügen</span>
+        <i>check</i>
+    </button>
+
+    @if (!string.IsNullOrEmpty(GeneralError))
+    {
+        <p class="my red error-message">@GeneralError</p>
+    }
+</div>
+
+@code {
+    private int UserId;
+    private string Betrag;
+    private string Beschreibung;
+    private string Kategorie;
+    private List<Kategorie> Kategorien;
+    private bool Nochmal;
+    private string CurrentTab = "Ausgabe";
+
+    // Error handling
+    private ValidationErrors ValidationError = new ValidationErrors();
+    private string GeneralError;
+
+    private class ValidationErrors
+    {
+        public string Betrag { get; set; }
+        public string Beschreibung { get; set; }
+        public string Kategorie { get; set; }
+    }
+
+    private void SetCurrentTab(string tab) => CurrentTab = tab;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            UserId = Convert.ToInt32(await JS.InvokeAsync<string>("getUserId"));
+
+            using (var db = new HaushaltsbuchContext())
+            {
+                var benutzerKategorieIds = db.BenutzerKategorie
+                    .Where(bk => bk.BenutzerId == UserId && bk.KategorieId > 11)
+                    .Select(bk => bk.KategorieId)
+                    .ToList();
+                List<Kategorie> benutzerKategorien = db.Kategorie.Where(k => benutzerKategorieIds.Contains(k.Id)).ToList();
+                Kategorien = db.Kategorie.Where(k => k.Id <= 11).ToList();
+                Kategorien.AddRange(benutzerKategorien);
+
+                // Trigger a re-render to reflect updated data
+                StateHasChanged();
+            }
+        }
+    }
+
+    private void SelectKategorie(string kategorie) => Kategorie = kategorie;
+
+    private void TryAddEntry()
+    {
+        ClearErrors(); // Reset error messages
+
+        if (!ValidateForm())
+        {
+            return; // Stop execution if validation fails
+        }
+
+        try
+        {
+            using (var db = new HaushaltsbuchContext())
+            {
+                Kategorie kategorie = Kategorien.Find(k => k.Name == Kategorie);
+                var betragValue = Convert.ToDouble(Betrag.Replace(',', '.'));
+
+                Transaktion transaktion = new Transaktion
+                    {
+                        BenutzerId = UserId,
+                        KategorieId = kategorie == null ? 11 : kategorie.Id,
+                        Betrag = CurrentTab == "Ausgabe" ? betragValue * (-1) : betragValue,
+                        Beschreibung = Beschreibung,
+                        Zeit = DateTime.Now
+                    };
+
+                db.Transaktion.Add(transaktion);
+                db.SaveChanges();
+
+                if (Nochmal)
+                {
+                    ClearForm();
+                }
+                else
+                {
+                    RedirectToHome();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            GeneralError = "Es ist ein Fehler aufgetreten: " + ex.Message;
+        }
+    }
+
+    private bool ValidateForm()
+    {
+        bool isValid = true;
+
+        if (string.IsNullOrWhiteSpace(Beschreibung))
+        {
+            ValidationError.Beschreibung = "Beschreibung darf nicht leer sein.";
+            isValid = false;
+        }
+
+        if (string.IsNullOrWhiteSpace(Betrag) || !double.TryParse(Betrag.Replace(',', '.'), out _))
+        {
+            ValidationError.Betrag = "Betrag ist ungültig oder leer.";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    private void ClearErrors()
+    {
+        ValidationError = new ValidationErrors(); // Reset error messages
+        GeneralError = string.Empty;
+    }
+
+    private void ClearForm()
+    {
+        Betrag = string.Empty;
+        Beschreibung = string.Empty;
+        Kategorie = string.Empty;
+        StateHasChanged();
+    }
+
+    private void RedirectToHome()
+    {
+        NavigationManager.NavigateTo("/home");
+    }
+}

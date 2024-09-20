@@ -1,0 +1,110 @@
+﻿@page "/users"
+@using Haushaltsbuch.Models
+@rendermode InteractiveServer
+
+<div class="users">
+    <h1 class="my">Benutzerverwaltung</h1>
+
+    <div class="my field prefix round border">
+        <i>search</i>
+        <input type="text" @bind="SearchText" placeholder="Suche..." />
+    </div>
+
+    <div class="extra-height scroll surface">
+        <table class="border">
+            <thead class="fixed">
+                <tr>
+                    <th>Benutzername</th>
+                    <th>Administrator</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Benutzer benutzer in FilteredBenutzer)
+                {
+                    <tr>
+                        <td>@benutzer.Benutzername</td>
+                        <td>@(benutzer.IstAdmin ? "Ja" : "Nein")</td>
+                        <td>
+                            <i @onclick="() => RedirectToEdit(benutzer.Id)" style="cursor:pointer;">edit</i>
+                            <i @onclick="() => DeleteEntry(benutzer.Id)" style="cursor:pointer;">delete</i>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    private List<Benutzer> Benutzer = new();
+    private List<Benutzer> FilteredBenutzer = new();
+    private string searchText = string.Empty;
+
+    public string SearchText
+    {
+        get => searchText;
+        set
+        {
+            if (searchText != value)
+            {
+                searchText = value;
+                FilterUsers();  // Automatically trigger filtering when search text changes
+            }
+        }
+    }
+
+    private int UserId;
+
+    private void RedirectToEdit(int id) => NavigationManager.NavigateTo($"/edit-user/{id}");
+
+    private async Task DeleteEntry(int id)
+    {
+        using (var db = new HaushaltsbuchContext())
+        {
+            var benutzer = db.Benutzer.Find(id);
+            if (benutzer != null)
+            {
+                db.Benutzer.Remove(benutzer);
+                await db.SaveChangesAsync();
+            }
+        }
+        await LoadData();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            UserId = Convert.ToInt32(await JS.InvokeAsync<string>("getUserId"));
+            await LoadData();
+        }
+    }
+
+    private async Task LoadData()
+    {
+        using (var db = new HaushaltsbuchContext())
+        {
+            //Admin-Check
+            if (!db.Benutzer.Find(UserId).IstAdmin) NavigationManager.NavigateTo("/home");
+
+            Benutzer = db.Benutzer.Where(b => b.Id != UserId).ToList();
+            FilterUsers(); // Ensure filtered list is set
+            StateHasChanged();
+        }
+    }
+
+    private void FilterUsers()
+    {
+        if (string.IsNullOrWhiteSpace(SearchText))
+        {
+            FilteredBenutzer = Benutzer;
+        }
+        else
+        {
+            FilteredBenutzer = Benutzer
+                .Where(b => b.Benutzername.StartsWith(SearchText, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+    }
+}
